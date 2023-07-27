@@ -1,0 +1,23 @@
+.postModal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  display: none;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.postModalContent {
+  padding: 25px;
+  border-radius: 12px;
+  background-color: #242424;
+}
+
+.postModal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

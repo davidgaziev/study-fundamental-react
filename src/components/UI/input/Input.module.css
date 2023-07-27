@@ -1,0 +1,10 @@
+.postInput {
+    width: 100%;
+    height: 25px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.postInput:focus {
+    border-color: #646cff;
+}

@@ -9,6 +9,8 @@ import Modal from '../components/UI/modal/Modal';
 import { useFetching } from '../components/hooks/useFetching';
 import { usePosts } from '../components/hooks/usePosts';
 import { getPageCount } from '../utils/pages';
+import { useObserver } from '../components/hooks/useObserver';
+import Select from '../components/UI/select/Select';
 
 function Posts() {
   const [posts, setPosts] = useState([]);
@@ -18,7 +20,6 @@ function Posts() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const lastElement = useRef();
-  const observer = useRef();
 
   const [fetchedPosts, isPostsLoading, postsError] = useFetching(
     async (limit, page) => {
@@ -31,21 +32,13 @@ function Posts() {
 
   const searchedAndSortedPosts = usePosts(posts, filter.sort, filter.query);
 
-  useEffect(() => {
-    if (isPostsLoading) return;
-    if (observer.current) observer.current.disconnect();
-    var callback = function (entries, observer) {
-      if (entries[0].isIntersecting && page < totalPages) {
-        setPage(page + 1);
-      }
-    };
-    observer.current = new IntersectionObserver(callback);
-    observer.current.observe(lastElement.current);
-  }, [isPostsLoading]);
+  useObserver(lastElement, isPostsLoading, page < totalPages, () => {
+    setPage(page + 1);
+  });
 
   useEffect(() => {
     fetchedPosts(limit, page);
-  }, [page]);
+  }, [page, limit]);
 
   const createNewPost = (newPost) => {
     setPosts([...posts, newPost]);
@@ -64,6 +57,19 @@ function Posts() {
         <PostForm createNewPost={createNewPost} />
       </Modal>
       <PostFilter filter={filter} setFilter={setFilter} />
+
+      <Select
+        value={limit}
+        onChange={(v) => setLimit(v)}
+        defaultValue={'Количество постов'}
+        options={[
+          { value: 5, name: '5' },
+          { value: 10, name: '10' },
+          { value: 15, name: '15' },
+          { value: 20, name: '20' },
+          { value: -1, name: 'Все посты' },
+        ]}
+      />
 
       {postsError && <h1>Error:{postsError}</h1>}
       <ListPosts

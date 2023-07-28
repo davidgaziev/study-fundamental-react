@@ -7,10 +7,10 @@ import Button from '../components/UI/button/Button';
 import Loader from '../components/UI/loader/Loader';
 import Modal from '../components/UI/modal/Modal';
 import { useFetching } from '../components/hooks/useFetching';
+import { useObserver } from '../components/hooks/useObserver';
 import { usePosts } from '../components/hooks/usePosts';
 import { getPageCount } from '../utils/pages';
-import { useObserver } from '../components/hooks/useObserver';
-import Select from '../components/UI/select/Select';
+import { uniquePosts } from '../utils/uniquePosts';
 
 function Posts() {
   const [posts, setPosts] = useState([]);
@@ -20,17 +20,17 @@ function Posts() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const lastElement = useRef();
+  const searchedAndSortedPosts = usePosts(posts, filter.sort, filter.query);
 
   const [fetchedPosts, isPostsLoading, postsError] = useFetching(
     async (limit, page) => {
       const response = await PostService.getAll(limit, page);
-      setPosts([...posts, ...response.data]);
+      const unique = uniquePosts([...posts, ...response.data]);
+      setPosts(unique);
       const totalCount = response.headers['x-total-count'];
       setTotalPages(getPageCount(totalCount, limit));
     }
   );
-
-  const searchedAndSortedPosts = usePosts(posts, filter.sort, filter.query);
 
   useObserver(lastElement, isPostsLoading, page < totalPages, () => {
     setPage(page + 1);
@@ -56,20 +56,8 @@ function Posts() {
       <Modal visible={visible} setVisible={setVisible}>
         <PostForm createNewPost={createNewPost} />
       </Modal>
-      <PostFilter filter={filter} setFilter={setFilter} />
 
-      <Select
-        value={limit}
-        onChange={(v) => setLimit(v)}
-        defaultValue={'Количество постов'}
-        options={[
-          { value: 5, name: '5' },
-          { value: 10, name: '10' },
-          { value: 15, name: '15' },
-          { value: 20, name: '20' },
-          { value: -1, name: 'Все посты' },
-        ]}
-      />
+      <PostFilter filter={filter} setFilter={setFilter} setLimit={setLimit} />
 
       {postsError && <h1>Error:{postsError}</h1>}
       <ListPosts

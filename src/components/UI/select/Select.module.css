@@ -1,3 +1,15 @@
 .postSelect {
-  display: flex;
+  display: inline-block;
+  background-color: #474747;;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgb(204, 204, 204);
+  font-size: 14px;
+  color: #fff;
+  height: 100%;
+  text-align: left;
+  padding: 10px 0 10px 0;
+
+  width: 200px;
 }
+
+

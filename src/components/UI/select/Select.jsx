@@ -1,13 +1,13 @@
 import classes from './Select.module.css';
 
-const Select = ({ options, defaultValue, value, onChange }) => {
+const Select = ({ options, defaultValue, onChange }) => {
   return (
     <select
       className={classes.postSelect}
-      value={value}
       onChange={(e) => onChange(e.target.value)}
+      defaultValue={'default'}
     >
-      <option disabled value="">
+      <option disabled value="default">
         {defaultValue}
       </option>
 

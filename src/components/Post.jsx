@@ -18,11 +18,13 @@ const Post = ({ post, removePost }) => {
           <div className="post__body">{post.body}</div>
         </article>
 
-        <Link to={`/posts/${post.id}`}>
-          <Button>Открыть</Button>
-        </Link>
+        <div className="post__interaction">
+          <Link to={`/posts/${post.id}`}>
+            <Button>Открыть</Button>
+          </Link>
 
-        <Button onClick={() => removePost(post)}>Удалить</Button>
+          <Button onClick={() => removePost(post)}>Удалить</Button>
+        </div>
       </div>
     </>
   );

@@ -46,7 +46,14 @@ const PostPage = () => {
           </article>
         </div>
       )}
-      <div>
+      <div
+        style={{
+          textAlign: 'left',
+          maxWidth: 800,
+          minWidth: 600,
+          margin: ' 0 auto',
+        }}
+      >
         <h2>Комментарии</h2>
         {isCommentsLoading ? (
           <Loader />

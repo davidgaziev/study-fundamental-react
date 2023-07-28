@@ -12,11 +12,9 @@ function App() {
   }, []);
 
   return (
-    <>
-      <AuthContext.Provider value={{ isAuth, setIsAuth }}>
-        <RouterProvider router={isAuth ? privateRouter : publiceRouter} />
-      </AuthContext.Provider>
-    </>
+    <AuthContext.Provider value={{ isAuth, setIsAuth }}>
+      <RouterProvider router={isAuth ? privateRouter : publiceRouter} />
+    </AuthContext.Provider>
   );
 }
 

@@ -9,38 +9,10 @@ import About from '../pages/About';
 import PostPage from '../pages/PostPage';
 import Login from '../pages/Login';
 
-// export const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <Layout />,
-//     children: [
-//       {
-//         path: '/login',
-//         element: <Login />,
-//       },
-//       {
-//         path: '/posts',
-//         element: <Posts />,
-//       },
-//       {
-//         path: '/about',
-//         element: <About />,
-//       },
-//       {
-//         path: '/posts/:postId',
-//         element: <PostPage />,
-//       },
-//       {
-//         path: '*',
-//         element: <Posts />,
-//       },
-//     ],
-//   },
-// ]);
-
 export const privateRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
+      <Route index element={<Posts />} />
       <Route path="/posts" element={<Posts />} />
       <Route path="/posts/:postId" element={<PostPage />} />
       <Route path="/about" element={<About />} />

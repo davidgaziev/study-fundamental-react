@@ -1,10 +1,11 @@
 #root {
-  max-width: 100vw;
-  /* margin: 0 auto; */
   text-align: center;
 }
 
 header {
+  position: sticky;
+  top: 0;
+
   height: 3.5rem;
   display: flex;
   justify-content: space-between;
@@ -28,14 +29,6 @@ nav a.active {
   color: #646cff;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
 button.page-selector {
   margin-top: 15px;
   margin-left: 10px;
@@ -47,6 +40,5 @@ button.page-selector__current {
 
 .post-section {
   padding: 2rem;
-  max-width: 1280px;
   margin: 0 auto;
 }

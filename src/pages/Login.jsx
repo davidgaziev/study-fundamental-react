@@ -13,7 +13,14 @@ const Login = () => {
   };
 
   return (
-    <div style={{ width: 800, margin: '0 auto' }}>
+    <div
+      style={{
+        minWidth: 320,
+        maxWidth: 800,
+        margin: '0 auto',
+        padding: '1rem',
+      }}
+    >
       <form onSubmit={login}>
         <Input type="text" placeholder="Введите логин" />
         <Input type="password" placeholder="Введите пароль" />

@@ -50,8 +50,9 @@ const PostPage = () => {
         style={{
           textAlign: 'left',
           maxWidth: 800,
-          minWidth: 600,
+          minWidth: 320,
           margin: ' 0 auto',
+          padding: '1rem',
         }}
       >
         <h2>Комментарии</h2>

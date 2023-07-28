@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import Input from '../components/UI/Input/Input';
+import Input from '../components/UI/input/Input';
 import Button from '../components/UI/button/Button';
 import { AuthContext } from '../context';
 

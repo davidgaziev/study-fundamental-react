@@ -1,5 +1,5 @@
 # Пет проект по изучению React-а 
-[Посмотреть](https://study-fundamental-react.vercel.app/)
+[Посмотреть](https://study-fundamental-react-pcc7.vercel.app/)
 
 В проекте реализовано: 
 - Отображение постов (https://jsonplaceholder.typicode.com/)
